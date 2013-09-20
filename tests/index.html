@@ -16,13 +16,33 @@
 
 	<script type="text/javascript" data-main="main.js" src="components/requirejs/require.js"></script>
 
-	<link rel="stylesheet" type="text/css" href="components/jquery-ui/themes/base/jquery-ui.css">
+	<style type="text/css">
+		#draggable {
+			width: 100px;
+			height: 100px;
+
+			background-color: maroon;
+			color: white;
+
+			font-family: sans-serif;
+
+			padding: 10px;
+		}
+	</style>
+
+
 	
 </head>
 
 <body>
 
-	<div id="handle" style="width: 30px; height: 30px; background-color: red;"></div>
+	<div id="draggable">
+		<div>pos-top: <span id="position-top"></span></div>
+		<div>pos-left: <span id="position-left"></span></div>
+
+		<div>off-top: <span id="offset-top"></span></div>
+		<div>off-left: <span id="offset-left"></span></div>
+	</div>
 
 	<br>
 	<a href="tests.html">Go to unit tests</a>
