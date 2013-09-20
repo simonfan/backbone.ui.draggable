@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+	
+	<title>Module boilerplate</title>
+	
+	<!-- Set a script tag to define unit as FALSE, so that the demo page is run -->
+	<script type="text/javascript">
+		window.__unit = false;
+		window.__demo = true;
+	</script>
+
+	<script type="text/javascript" data-main="main.js" src="components/requirejs/require.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="components/jquery-ui/themes/base/jquery-ui.css">
+	
+</head>
+
+<body>
+	<!-- Slider -->
+	<div id="slider-section">
+		<div class="display">
+			Size: <div class="size"></div>
+		</div>
+	
+		<div class="display">
+			Min-price: <div class="min-price"></div>
+			Max-price: <div class="max-price"></div>
+		</div>
+
+		Price: <div class="slider price-slider" data-attribute="price" data-type="range" data-min="1000" data-max="1000000" data-step="2000"></div>
+
+		Size: <div class="slider size-slider" data-attribute="size" data-type="single" data-min="0" data-max="16"></div>
+	</div>
+	<!-- Slider -->
+
+	<br>
+	<a href="tests.html">Go to unit tests</a>
+	
+</body>
+
+</html>
