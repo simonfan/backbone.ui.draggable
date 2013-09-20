@@ -21,7 +21,7 @@ require.config({
 		'jquery.ui.draggable': 'components/jquery-ui/ui/jquery.ui.draggable',
 
 		// the module files go here
-		'backbone.ui.handle': '../backbone.ui.handle',
+		'backbone.ui.draggable': '../backbone.ui.draggable',
 
 		// DEMO
 		'demo-main': 'demo',	// the main file for the demo

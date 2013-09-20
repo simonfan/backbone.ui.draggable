@@ -1,5 +1,18 @@
-define(['backbone.ui.handle','backbone','jquery'], function(Handle, Backbone, $) {
+define(['backbone.ui.draggable','backbone','jquery'], function(Draggable, Backbone, $) {
 
 
-	console.log(Handle);
+	var ModifiedDraggable = Draggable.extend({
+		draggableOptions: {
+			
+		}
+	});
+
+	var draggable = new Draggable({
+		el: $('#draggable'),
+	});
+
+
+	draggable.model.on('change', function(model) {
+		console.log(model.attributes);
+	})
 });
