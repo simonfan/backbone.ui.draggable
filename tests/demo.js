@@ -7,19 +7,28 @@ define(['backbone.ui.draggable','backbone','jquery'], function(Draggable, Backbo
 		},
 
 		map: _.extend(Draggable.prototype.map, {
-			'#position-top': 'positionTop',
-			'#position-left': 'positionLeft',
+			'#position-top': 'top',
+			'#position-left': 'left',
 			'#offset-top': 'offsetTop',
 			'#offset-left': 'offsetLeft',
 		}),
+
+
+		handleDrag: function(e, ui) {
+			if (this.model.get('left') > 400) {
+				this.$el.draggable('option','axis',false);
+			} else {
+				this.$el.draggable('option','axis','x')
+			}
+		},
 	});
 
 	var draggable = window.draggable = new ModifiedDraggable({
 		el: $('#draggable'),
 
 		model: new Backbone.Model({
-			positionTop: 100,
-			positionLeft: 200,
+			top: 100,
+			left: 200,
 		})
 	});
 });

@@ -8,11 +8,12 @@ require.config({
 		'backbone': 'components/backbone/backbone',
 
 		'jquery.fill': 'components/jquery.fill/jquery.fill',
-		'backbone.modelview': 'components/backbone.modelview/backbone.modelview',
+		'backbone.view.model': 'components/backbone.view.model/backbone.view.model',
 
 		// jquery ui -> base stuff
 		'jquery.ui.core': 'components/jquery-ui/ui/jquery.ui.core',
 		'jquery.ui.widget': 'components/jquery-ui/ui/jquery.ui.widget',
+		'jquery.ui': 'components/jquery-ui/ui/jquery-ui',
 
 		// jquery ui interactions
 		'jquery.ui.mouse': 'components/jquery-ui/ui/jquery.ui.mouse',
@@ -56,6 +57,10 @@ require.config({
 		'jquery.ui.core': {
 			deps: ['jquery']
 		},
+
+		'jquery.ui': {
+			deps: ['jquery']
+		}
 	}
 });
 	

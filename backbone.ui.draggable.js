@@ -1,7 +1,7 @@
-define(['backbone.modelview','jquery','backbone','underscore','jquery.ui.draggable'],
-function(ModelView          , $      , Backbone , undef      , undef               ) {
+define(['backbone.view.model','jquery','backbone','underscore','jquery.ui.draggable'],
+function(ModelView           , $      , Backbone , undef      , undef               ) {
 
-	var Handle = ModelView.extend({
+	var Draggable = ModelView.extend({
 		initialize: function(options) {
 
 			_.bindAll(this,'_handleDrag','_handleDragStart','_handleDragStop');
@@ -9,16 +9,26 @@ function(ModelView          , $      , Backbone , undef      , undef            
 
 			this.draggableOptions = _.extend(this.draggableOptions, options.draggableOptions);
 
-			this.$handle = options.handle || this.$el;
+			this.$draggable = options.draggable || this.$el;
 
 			/**
 			 * Build the draggable.
 			 */
-			this.$handle
+			this.$draggable
 				.draggable(this.draggableOptions)
 				.on('drag', this._handleDrag)
 				.on('dragstart', this._handleDragStart)
 				.on('dragstop', this._handleDragStop);
+
+			/**
+			 * Build the modelview map object: extend the original map object
+			 */
+			this.map = _.extend({}, this.map, {
+				'.->css:top': this.dataMap.positionTop,
+				'.->css:left': this.dataMap.positionLeft,
+			});
+
+			console.log(this.map)
 
 			// run the ModelView initialize after so that the initial
 			// positioning is actually applied.
@@ -26,10 +36,7 @@ function(ModelView          , $      , Backbone , undef      , undef            
 			ModelView.prototype.initialize.call(this, options);
 		},
 
-		map: {
-			'.->css:top': 'positionTop',
-			'.->css:left': 'positionLeft',
-		},
+		map: {},
 
 		draggableOptions: {},
 
@@ -43,11 +50,11 @@ function(ModelView          , $      , Backbone , undef      , undef            
 			var axis = this.$el.draggable('option','axis');
 
 			// set position
-			var positionTopAttr = this.positionDataMap.top,
-				offsetTopAttr = this.offsetDataMap.top,
+			var positionTopAttr = this.dataMap.positionTop,
+				offsetTopAttr = this.dataMap.offsetTop,
 
-				positionLeftAttr = this.positionDataMap.left,
-				offsetLeftAttr = this.offsetDataMap.left;
+				positionLeftAttr = this.dataMap.positionLeft,
+				offsetLeftAttr = this.dataMap.offsetLeft;
 
 			// only set the positionTopAttribute if axis is NOT equal 'x'
 			if (axis !== 'x') {
@@ -86,16 +93,13 @@ function(ModelView          , $      , Backbone , undef      , undef            
 		/**
 		 * Data mapping.
 		 */
-		positionDataMap: {
-			top: 'positionTop',
-			left: 'positionLeft',
-		},
-
-		offsetDataMap: {
-			top: 'offsetTop',
-			left: 'offsetLeft',
-		},
+		dataMap: {
+			positionTop: 'top',
+			positionLeft: 'left',
+			offsetTop: 'offsetTop',
+			offsetLeft: 'offsetLeft',
+		}
 	});
 
-	return Handle;
+	return Draggable;
 });
